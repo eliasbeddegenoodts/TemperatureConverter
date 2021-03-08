@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350.0" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="350" Width="525">
+    
+    <StackPanel>
+        <TextBox x:Name="textBox" /> <!-- Adding the x:Name="textBox" lets WPF generate a variable named textBox that contains a reference to the TextBox object. Let's check this: -->
+        <Button />
+        <Button Content="Convert to Celsius" Click="ConvertToCelsius" />
+    </StackPanel>
+    
 </Window>
