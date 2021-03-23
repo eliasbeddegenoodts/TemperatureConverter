@@ -8,9 +8,9 @@
         Title="MainWindow" Height="350" Width="525">
 
     <StackPanel>
-        <TextBlock Text="Celsius" Background="#AAA" FontWeight="Bold" Padding="4" FontSize="16" />
+        <TextBlock Text="Celsius" Background="#AAA" FontWeight="Bold" Padding="4" FontSize="16" TextAlignment="Center" />
         <TextBox x:Name="celciusTextBox" />
-        <TextBlock Text="Fahrenheit" Background="#AAA" FontWeight="Bold" Padding="4" FontSize="16" HorizontalAlignment="Center" />
+        <TextBlock Text="Fahrenheit" Background="#AAA" FontWeight="Bold" Padding="4" FontSize="16" TextAlignment="Center" />
         <TextBox x:Name="fahrenheitTextbox" />
         <!-- Adding the x:Name="textBox" lets WPF generate a variable named textBox that contains a reference to the TextBox object.-->
         <Button Content="Convert to Celsius" Click="ConvertToCelsius" />
