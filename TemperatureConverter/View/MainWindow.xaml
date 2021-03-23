@@ -6,25 +6,16 @@
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-
+    <Window.Resources>
+        <LinearGradientBrush x:Key="labelBackgroundBrush" StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Color="Gray" Offset="0" />
+            <GradientStop Color="White" Offset="1" />
+        </LinearGradientBrush>
+    </Window.Resources>
     <StackPanel>
-        <TextBlock Text="Celsius" FontWeight="Bold" Padding="4" FontSize="16" TextAlignment="Center">
-            <TextBlock.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                    <GradientStop Color="Gray" Offset="0" />
-                    <GradientStop Color="White" Offset="1" />
-                </LinearGradientBrush>
-            </TextBlock.Background>
-        </TextBlock>
+        <TextBlock Text="Celsius" FontWeight="Bold" Padding="4" FontSize="16" TextAlignment="Center" Background="{StaticResource labelBackgroundBrush}" />
         <TextBox x:Name="celciusTextBox" />
-        <TextBlock Text="Fahrenheit" FontWeight="Bold" Padding="4" FontSize="16" TextAlignment="Center">
-            <TextBlock.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                    <GradientStop Color="Gray" Offset="0" />
-                    <GradientStop Color="White" Offset="1" />
-                </LinearGradientBrush>
-            </TextBlock.Background>
-        </TextBlock>
+        <TextBlock Text="Fahrenheit" FontWeight="Bold" Padding="4" FontSize="16" TextAlignment="Center" Background="{StaticResource labelBackgroundBrush}" />
         <TextBox x:Name="fahrenheitTextbox" />
         <!-- Adding the x:Name="textBox" lets WPF generate a variable named textBox that contains a reference to the TextBox object-->
         <Button Content="Convert to Celsius" Click="ConvertToCelsius" />
