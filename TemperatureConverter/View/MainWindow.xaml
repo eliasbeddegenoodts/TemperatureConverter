@@ -7,15 +7,25 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Window.Resources>
-        <LinearGradientBrush x:Key="labelBackgroundBrush" StartPoint="0,0" EndPoint="1,0">
-            <GradientStop Color="Gray" Offset="0" />
-            <GradientStop Color="White" Offset="1" />
-        </LinearGradientBrush>
+        <Style x:Key="labelStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="Gray" Offset="0" />
+                        <GradientStop Color="White" Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Padding" Value="2" />
+        </Style>
     </Window.Resources>
     <StackPanel>
-        <TextBlock Text="Celsius" FontWeight="Bold" Padding="4" FontSize="16" TextAlignment="Center" Background="{StaticResource labelBackgroundBrush}" />
+        <TextBlock Text="Celsius" Style="{StaticResource labelStyle}" />
         <TextBox x:Name="celciusTextBox" />
-        <TextBlock Text="Fahrenheit" FontWeight="Bold" Padding="4" FontSize="16" TextAlignment="Center" Background="{StaticResource labelBackgroundBrush}" />
+        <TextBlock Text="Fahrenheit" Style="{StaticResource labelStyle}" />
         <TextBox x:Name="fahrenheitTextbox" />
         <!-- Adding the x:Name="textBox" lets WPF generate a variable named textBox that contains a reference to the TextBox object-->
         <Button Content="Convert to Celsius" Click="ConvertToCelsius" />
