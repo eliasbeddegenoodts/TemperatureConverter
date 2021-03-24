@@ -25,21 +25,39 @@ namespace View
             InitializeComponent();
         }
 
-        private void ConvertToCelsius(object sender, RoutedEventArgs e)
-        {
-            var fahrenheitString = fahrenheitTextBox.Text;
-            var fahrenheit = double.Parse(fahrenheitString);
-            var celsius = (fahrenheit - 32) / 1.8;
-            var celsiusString = celsius.ToString();
-            celsiusTextBox.Text = celsiusString;
-        }
-
-        private void ConvertToFahrenheit(object sender, RoutedEventArgs e)
+        private void ConvertCelsius(object sender, RoutedEventArgs e)
         {
             var celsiusString = celsiusTextBox.Text;
             var celsius = double.Parse(celsiusString);
             var fahrenheit = celsius * 1.8 + 32;
+            var kelvin = celsius + 273.15;
             var fahrenheitString = fahrenheit.ToString();
+            var kelvinString = kelvin.ToString();
+            fahrenheitTextBox.Text = fahrenheitString;
+            kelvinTextBox.Text = kelvinString;
+        }
+
+        private void ConvertFahrenheit(object sender, RoutedEventArgs e)
+        {
+            var fahrenheitString = fahrenheitTextBox.Text;
+            var fahrenheit = double.Parse(fahrenheitString);
+            var celsius = (fahrenheit - 32) / 1.8;
+            var kelvin = celsius + 273.15;
+            var celsiusString = celsius.ToString();
+            var kelvinString = kelvin.ToString();
+            celsiusTextBox.Text = celsiusString;
+            kelvinTextBox.Text = kelvinString;
+        }
+
+        private void ConvertKelvin(object sender, RoutedEventArgs e)
+        {
+            var kelvinString = kelvinTextBox.Text;
+            var kelvin = double.Parse(kelvinString);
+            var celsius = kelvin - 273.15;
+            var fahrenheit = kelvin * 9 / 5 - 459.67;
+            var celsiusString = celsius.ToString();
+            var fahrenheitString = fahrenheit.ToString();
+            celsiusTextBox.Text = celsiusString;
             fahrenheitTextBox.Text = fahrenheitString;
         }
     }
