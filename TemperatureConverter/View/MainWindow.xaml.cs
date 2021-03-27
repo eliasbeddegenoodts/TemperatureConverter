@@ -32,7 +32,7 @@ namespace View
             var celsius = slider.Value - 273.15;
 
             kelvinTextBox.Text = slider.Value.ToString();
-            fahrenheitTextBox.Text = fahrenheit.ToString()
+            fahrenheitTextBox.Text = fahrenheit.ToString();
             celsiusTextBox.Text = celsius.ToString();
         }
             
