@@ -65,6 +65,6 @@
             <TextBox Grid.Row="1"  Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource textBoxStyle}" />
             <!-- UpdateSourceTrigger=PropertyChanged zorgt ervoor dat als ik een waarde intyp in de kelvinbox, dat deze onmiddelijk verandert bij de slider. -->
         </Grid>
-        <Slider x:Name="slider" Minimum="0" Maximum="1000" ValueChanged="SliderValueChanged" />
+        <Slider x:Name="slider" Minimum="0" Maximum="1000" />
     </StackPanel>
 </Window>

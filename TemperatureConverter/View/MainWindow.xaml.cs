@@ -25,11 +25,6 @@ namespace View
         {
             InitializeComponent();
         }
-
-        private void SliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-
-        }
     }
 
     public class CelsiusConverter : IValueConverter
