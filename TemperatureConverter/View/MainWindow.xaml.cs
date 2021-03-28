@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,13 +29,36 @@ namespace View
         private void SliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             var kelvin = slider.Value;
-            var fahrenheit = slider.Value * 9 / 5 - 459.67;
-            var celsius = slider.Value - 273.15;
+            var celsius = kelvin - 273.15;
+            var fahrenheit = celsius * 1.8 + 32;
 
-            kelvinTextBox.Text = kelvin.ToString();
-            fahrenheitTextBox.Text = fahrenheit.ToString();
-            celsiusTextBox.Text = celsius.ToString();
+            var kelvinString = kelvin.ToString();
+            var fahrenheitString = fahrenheit.ToString();
+
+            fahrenheitTextBox.Text = fahrenheitString;
         }
-            
+    }
+
+    public class CelsiusConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            //Convert will be called to convert the slider value (Kelvin) into a text box value (Celsius).
+            //Mind the types: the slider's value is a double, whereas the text box expects a string.
+            var kelvin = (double)value;
+            var celsius = kelvin - 273.15;
+
+            return celsius.ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            // ConvertBack is expected to convert the text box value (a string denoting a Celsius 
+            // temperature) into a slider value (a double representing the same temperature expressed in Kelvin).
+            var celsius = double.Parse((string)value);
+            var kelvin = celsius + 273.15;
+
+            return kelvin;
+        }
     }
 }
