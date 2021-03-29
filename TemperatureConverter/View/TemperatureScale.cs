@@ -6,59 +6,57 @@ using System.Threading.Tasks;
 
 namespace View
 {
-    class TemperatureScale
+    
+    public interface ITemperatureScale
     {
-        public interface ITemperatureScale
-        {
-            string Name { get; }
+        string Name { get; }
 
-            double ConvertToKelvin(double temperature);
-            double ConvertFromKelvin(double temperature);
+        double ConvertToKelvin(double temperature);
+        double ConvertFromKelvin(double temperature);
+    }
+
+    public class KelvinTemperatureScale : ITemperatureScale
+    {
+        public string Name => "Kelvin";
+
+        public double ConvertFromKelvin(double temperature)
+        {
+            return temperature;
         }
 
-        public class KelvinTemperatureScale : ITemperatureScale
+        public double ConvertToKelvin(double temperature)
         {
-            public string Name => "Kelvin";
+            return temperature;
+        }
+    }
 
-            public double ConvertFromKelvin(double temperature)
-            {
-                return temperature;
-            }
+    public class CelsiusTemperatureScale : ITemperatureScale
+    {
+        public string Name => "Celsius";
 
-            public double ConvertToKelvin(double temperature)
-            {
-                return temperature;
-            }
+        public double ConvertFromKelvin(double temperature)
+        {
+            return temperature - 273.15;
         }
 
-        public class CelsiusTemperatureScale : ITemperatureScale
+        public double ConvertToKelvin(double temperature)
         {
-            public string Name => "Celsius";
+            return temperature + 273.15;
+        }
+    }
 
-            public double ConvertFromKelvin(double temperature)
-            {
-                return temperature - 273.15;
-            }
+    public class FahrenheitTemperatureScale : ITemperatureScale
+    {
+        public string Name => "Fahrenheit";
 
-            public double ConvertToKelvin(double temperature)
-            {
-                return temperature + 273.15;
-            }
+        public double ConvertFromKelvin(double temperature)
+        {
+            return temperature * 9 / 5 - 459.67;
         }
 
-        public class FahrenheitTemperatureScale : ITemperatureScale
+        public double ConvertToKelvin(double temperature)
         {
-            public string Name => "Fahrenheit";
-
-            public double ConvertFromKelvin(double temperature)
-            {
-                return temperature * 9 / 5 - 459.67;
-            }
-
-            public double ConvertToKelvin(double temperature)
-            {
-                return temperature + (459.67) * 5 / 9;
-            }
+            return temperature + (459.67) * 5 / 9;
         }
     }
 }

@@ -27,45 +27,22 @@ namespace View
         }
     }
 
-    public class CelsiusConverter : IValueConverter
+    public class TempConverter : IValueConverter
     {
+        public ITemperatureScale TemperatureScale { get; set; }
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            //Convert will be called to convert the slider value (Kelvin) into a text box value (Celsius).
-            //Mind the types: the slider's value is a double, whereas the text box expects a string.
             var kelvin = (double)value;
-            var celsius = kelvin - 273.15;
 
-            return celsius.ToString();
+            return this.TemperatureScale.ConvertFromKelvin(kelvin).ToString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            // ConvertBack is expected to convert the text box value (a string denoting a Celsius 
-            // temperature) into a slider value (a double representing the same temperature expressed in Kelvin).
-            var celsius = double.Parse((string)value);
-            var kelvin = celsius + 273.15;
+            var temperature = double.Parse((string)value);
 
-            return kelvin;
-        }
-    }
-
-    public class FahrenheitConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            var kelvin = (double)value;
-            var fahrenheit = kelvin * 9 / 5 - 459.67;
-
-            return fahrenheit.ToString();
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            var fahrenheit = double.Parse((string)value);
-            var kelvin = (fahrenheit + 459.67) * 5 / 9;
-
-            return kelvin.ToString();
+            return this.TemperatureScale.ConvertToKelvin(temperature);
         }
     }
 }

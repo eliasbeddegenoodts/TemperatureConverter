@@ -27,8 +27,21 @@
         <Style x:Key="buttonStyle" TargetType="{x:Type Button}">
             <Setter Property="FontSize" Value="16" />
         </Style>
-        <local:CelsiusConverter x:Key="celsiusConverter" />
-        <local:FahrenheitConverter x:Key="fahrenheitConverter" />
+        <!-- Due to a mistake in the git repo (which has been fixed but probably after 
+        you've started working on this tutorial), the project's name is not View but TemperatureConverter. 
+        This causes the default namespace to also be called TemperatureConverter, meaning you now have both a 
+        class and a namespace with the same name. This can cause C# to get confused. To remedy this, give the class 
+        a different name (e.g. TempConverter). -->
+        <local:TempConverter x:Key="celsiusConverter">
+            <local:TempConverter.TemperatureScale>
+                <local:CelsiusTemperatureScale />
+            </local:TempConverter.TemperatureScale>
+        </local:TempConverter>
+        <local:TempConverter x:Key="fahrenheitConverter">
+            <local:TempConverter.TemperatureScale>
+                <local:FahrenheitTemperatureScale />
+            </local:TempConverter.TemperatureScale>
+        </local:TempConverter>
     </Window.Resources>
     <StackPanel>
         <Grid>
