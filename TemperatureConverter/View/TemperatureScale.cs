@@ -14,6 +14,7 @@ namespace View
 
             double ConvertToKelvin(double temperature);
             double ConvertFromKelvin(double temperature);
+
         }
     }
 }
