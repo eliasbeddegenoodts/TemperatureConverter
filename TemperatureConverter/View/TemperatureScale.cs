@@ -18,7 +18,7 @@ namespace View
 
         public class KelvinTemperatureScale : ITemperatureScale
         {
-            public string Name => throw new NotImplementedException();
+            public string Name => "Kelvin";
 
             public double ConvertFromKelvin(double temperature)
             {
