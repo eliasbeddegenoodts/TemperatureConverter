@@ -33,19 +33,9 @@
         This causes the default namespace to also be called TemperatureConverter, meaning you now have both a 
         class and a namespace with the same name. This can cause C# to get confused. To remedy this, give the class 
         a different name (e.g. TempConverter). -->
-        <local:TempConverter x:Key="celsiusConverter">
-            <local:TempConverter.TemperatureScale>
-                <local:CelsiusTemperatureScale />
-            </local:TempConverter.TemperatureScale>
-        </local:TempConverter>
-        <local:TempConverter x:Key="fahrenheitConverter">
-            <local:TempConverter.TemperatureScale>
-                <local:FahrenheitTemperatureScale />
-            </local:TempConverter.TemperatureScale>
-        </local:TempConverter>
     </Window.Resources>
     <StackPanel>
-        <Grid>
+        <Grid DataContext="{Binding Celsius}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
@@ -53,10 +43,10 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="Celsius" Style="{StaticResource labelStyle}" />
-            <TextBox Grid.Row="1" Style="{StaticResource textBoxStyle}" Text="{Binding Path=TemperatureInKelvin, Converter={StaticResource celsiusConverter}, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Grid.Row="0" Text="{Binding Name}" Style="{StaticResource labelStyle}" />
+            <TextBox Grid.Row="1" Style="{StaticResource textBoxStyle}" Text="{Binding Path=Temperature, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
-        <Grid>
+        <Grid DataContext="{Binding Fahrenheit}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
@@ -64,10 +54,10 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="Fahrenheit" Style="{StaticResource labelStyle}" />
-            <TextBox Grid.Row="1" Style="{StaticResource textBoxStyle}" Text="{Binding Path=TemperatureInKelvin, Converter={StaticResource fahrenheitConverter}, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Grid.Row="0" Text="{Binding Name}" Style="{StaticResource labelStyle}" />
+            <TextBox Grid.Row="1" Style="{StaticResource textBoxStyle}" Text="{Binding Path=Temperature, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
-        <Grid>
+        <Grid DataContext="{Binding Kelvin}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
@@ -75,8 +65,8 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="Kelvin" Style="{StaticResource labelStyle}" />
-            <TextBox Grid.Row="1" Style="{StaticResource textBoxStyle}" Text="{Binding Path=TemperatureInKelvin, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Grid.Row="0" Text="{Binding Name}" Style="{StaticResource labelStyle}" />
+            <TextBox Grid.Row="1" Style="{StaticResource textBoxStyle}" Text="{Binding Path=Temperature, UpdateSourceTrigger=PropertyChanged}" />
             <!-- UpdateSourceTrigger=PropertyChanged zorgt ervoor dat als ik een waarde intyp in de kelvinbox, dat deze onmiddelijk verandert bij de slider. -->
         </Grid>
         <Slider x:Name="slider" Value="{Binding Path=TemperatureInKelvin}" Minimum="0" Maximum="1000" />
