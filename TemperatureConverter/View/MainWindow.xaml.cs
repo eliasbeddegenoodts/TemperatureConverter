@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 using System.ComponentModel;
+using ViewModel;
 
 namespace View
 {
@@ -26,7 +27,6 @@ namespace View
         public MainWindow()
         {
             InitializeComponent();
-
             this.DataContext = new ConverterViewModel();
         }
     }
