@@ -32,9 +32,9 @@ namespace Cells
             }
         }
 
-        public Cell<U> Derive<U>(Func<T, U> transformer)
+        public Cell<U> Derive<U>(Func<T, U> transformer, Func<U, T> untransformer)
         {
-            return new Derived<T, U>(this, transformer);
+            return new Derived<T, U>(this, transformer, untransformer);
         }
         // The initial contents of the Derived is specified by : base(transformer(dependency.Value)):
         // it takes the value of the dependent cell (kelvin) and transforms it (k - 273.15)
@@ -52,10 +52,13 @@ namespace Cells
 
         private readonly Func<IN, OUT> transformer;
 
-        public Derived(Cell<IN> dependency, Func<IN, OUT> transformer) : base(transformer(dependency.Value))
+        private readonly Func<OUT, IN> untransformer;
+
+        public Derived(Cell<IN> dependency, Func<IN, OUT> transformer, Func<OUT, IN> untransformer) : base(transformer(dependency.Value))
         {
             this.dependency = dependency;
             this.transformer = transformer;
+            this.untransformer = untransformer;
 
             this.dependency.PropertyChanged += (sender, args) => base.Value = transformer(dependency.Value);
             //base.Value = transformer(dependency.Value) will be executed. In other words, the constructor's
@@ -71,7 +74,7 @@ namespace Cells
 
             set
             {
-
+                this.dependency.Value = untransformer(value);
             }
         }
     }
