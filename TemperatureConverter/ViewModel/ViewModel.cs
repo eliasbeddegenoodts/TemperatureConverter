@@ -4,55 +4,29 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Cells;
 using Model;
 
 namespace ViewModel
 {
-    public class ConverterViewModel : INotifyPropertyChanged
-        // this class is used for easy acces with ITemperatureScale
+    public class ConverterViewModel
     {
-        private double temperatureInKelvin;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public ConverterViewModel()
         {
+            this.TemperatureInKelvin = new Cell<double>();
+
             this.Kelvin = new TemperatureScaleViewModel(this, new KelvinTemperatureScale());
             this.Celsius = new TemperatureScaleViewModel(this, new CelsiusTemperatureScale());
             this.Fahrenheit = new TemperatureScaleViewModel(this, new FahrenheitTemperatureScale());
         }
 
-        public double TemperatureInKelvin
-        {
-            get
-            {
-                return temperatureInKelvin;
-            }
-            set
-            {
-                temperatureInKelvin = value;
+        public Cell<double> TemperatureInKelvin { get; }
 
-                //if (PropertyChanged != null)
-                //{
-                //    PropertyChanged(this, new PropertyChangedEventArgs(nameof(TemperatureInKelvin)));
-                //    // this = indicates whose property has been changed
-                //    // PropertyChangedEventArgs = takes name of property that got changed
-                //    // This is a string, and we could have simply put "TemperatureInKelvin".
-                //    // However, using nameof(TemperatureInKelvin) is much more robust: if we were to refactor 
-                //    // - rename TemperatureInKelvin, the IDE understands this argument has to change too.
-                //    // If it had been a simple string, the IDE would simply ignore it during refactoring.
-                //}
-                // vervangen door
+        public TemperatureScaleViewModel Kelvin { get; }
 
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TemperatureInKelvin)));
-            }
-        }
+        public TemperatureScaleViewModel Celsius { get; }
 
-        public TemperatureScaleViewModel Kelvin { get;  }
-
-        public TemperatureScaleViewModel Celsius { get;  }
-
-        public TemperatureScaleViewModel Fahrenheit { get;  }
+        public TemperatureScaleViewModel Fahrenheit { get; }
 
         public IEnumerable<TemperatureScaleViewModel> Scales
         {
@@ -64,7 +38,6 @@ namespace ViewModel
             }
         }
     }
-
 
     public class TemperatureScaleViewModel : INotifyPropertyChanged
     {
