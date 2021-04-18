@@ -59,7 +59,7 @@ namespace ViewModel
         {
             get
             {
-                return temperatureScale.ConvertFromKelvin(parent.TemperatureInKelvin);
+                return temperatureScale.ConvertFromKelvin(parent.TemperatureInKelvin); 
             }
             set
             {
