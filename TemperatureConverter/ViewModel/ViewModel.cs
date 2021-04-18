@@ -50,7 +50,7 @@ namespace ViewModel
             this.parent = parent;
             this.temperatureScale = temperatureScale;
 
-            this.parent.PropertyChanged += (sender, args) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Temperature)));
+            this.parent.TemperatureInKelvin.PropertyChanged += (sender, args) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Temperature)));
         }
 
         public string Name => temperatureScale.Name;
@@ -59,11 +59,11 @@ namespace ViewModel
         {
             get
             {
-                return temperatureScale.ConvertFromKelvin(parent.TemperatureInKelvin); 
+                return temperatureScale.ConvertFromKelvin(parent.TemperatureInKelvin.Value); 
             }
             set
             {
-                parent.TemperatureInKelvin = temperatureScale.ConvertToKelvin(value);
+                parent.TemperatureInKelvin.Value = temperatureScale.ConvertToKelvin(value);
             }
         }
 
