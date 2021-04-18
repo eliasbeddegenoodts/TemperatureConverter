@@ -31,10 +31,5 @@ namespace Cells
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public static implicit operator double(Cell<double> v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
