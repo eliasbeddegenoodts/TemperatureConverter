@@ -4,14 +4,15 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Cells;
 using Model;
 
 namespace ViewModel
 {
-    public class ConverterViewModel : INotifyPropertyChanged
+    public class ConverterViewModel
         // this class is used for easy acces with ITemperatureScale
     {
-        private double temperatureInKelvin;
+        private Cell<double> temperatureInKelvin;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -22,7 +23,7 @@ namespace ViewModel
             this.Fahrenheit = new TemperatureScaleViewModel(this, new FahrenheitTemperatureScale());
         }
 
-        public double TemperatureInKelvin
+        public Cell<double> TemperatureInKelvin
         {
             get
             {
@@ -31,19 +32,6 @@ namespace ViewModel
             set
             {
                 temperatureInKelvin = value;
-
-                //if (PropertyChanged != null)
-                //{
-                //    PropertyChanged(this, new PropertyChangedEventArgs(nameof(TemperatureInKelvin)));
-                //    // this = indicates whose property has been changed
-                //    // PropertyChangedEventArgs = takes name of property that got changed
-                //    // This is a string, and we could have simply put "TemperatureInKelvin".
-                //    // However, using nameof(TemperatureInKelvin) is much more robust: if we were to refactor 
-                //    // - rename TemperatureInKelvin, the IDE understands this argument has to change too.
-                //    // If it had been a simple string, the IDE would simply ignore it during refactoring.
-                //}
-                // vervangen door
-
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TemperatureInKelvin)));
             }
         }
